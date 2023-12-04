@@ -140,9 +140,23 @@ Modificar Producto
     //reusar las condiciones del primer metodo y la parte del indice
 */
 
-
 addProduct();
 deleteProduct();
 
+/*
+Buscar por Nombre
+    Solicita ingresar el nombre del producto a buscar.
+    Encuentra y muestra los productos coincidentes.
 
+Filtrar por Rango de Precio
+    Solicita ingresar un rango inferior y superior de precios.
+    Muestra los productos cuyos precios están dentro del rango especificado.
+
+Crear Reporte de Inventario (Listar todos los productos)
+    Muestra un informe detallado de todos los productos en el inventario con
+    fecha actual.
+    
+Salir
+    Finaliza la gestión del inventario.
+*/
 
