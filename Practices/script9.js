@@ -13,6 +13,7 @@ function addProduct()
 {
     let salida = +prompt('Ingrese el cero para salir o cualquier otro numero para continuar');
 
+    //Pedir datos repetidamente en caso de darlos mal
     while(salida !== 0)
     {
         let name = prompt(`--Agregar producto-- 
@@ -106,16 +107,39 @@ function deleteProduct()
 
     console.log('LISTA DE PRODUCTOS');
 
+    //Mostrar inventario
     inventario.forEach((product, i) =>
     {
         console.log(`${i}--${product.name}`);
     });
 
+    //indice a borrar
     do
     {
         index = +prompt('Ingrese un indice a borrar en el inventario');
-    }while(isNaN(index))
+    }while(isNaN(index));
+
+    inventario.splice(index,1);
+
+    //Mostrar inventario con elementos disponibles
+    inventario.forEach((product, i) =>
+    {
+        console.log(`${i}--${product.name}`);
+    });
 }
+
+/*
+Modificar Producto
+    Muestra la lista de productos.
+    Solicita el índice del producto a modificar.
+    Permite ingresar el nuevo nombre, categoría, precio, cantidad y marca del
+    producto.
+    Actualiza los detalles del producto en el inventario.
+
+
+    //reusar las condiciones del primer metodo y la parte del indice
+*/
+
 
 addProduct();
 deleteProduct();
