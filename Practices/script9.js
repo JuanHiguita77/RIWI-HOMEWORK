@@ -17,7 +17,7 @@ function addProduct()
     while(salida !== 0)
     {
         let name = prompt(`--Agregar producto-- 
-        --Ingrese el nombre del producto--`).trim(); 
+        --Ingrese el nombre del producto--`).trim().toLowerCase(); 
 
         do 
         {
@@ -28,11 +28,11 @@ function addProduct()
             } 
             else 
             {
-                name = prompt('Ingrese nuevamente el nombre del producto');
+                name = prompt('Ingrese nuevamente el nombre del producto').trim().toLowerCase();
             }
         } while (true);
 
-        let category = prompt('--Ingrese la categoria del produto--').trim();
+        let category = prompt('--Ingrese la categoria del produto--').trim().toLowerCase();
 
         do 
         {
@@ -43,11 +43,11 @@ function addProduct()
             } 
             else 
             {
-                category = prompt('Ingrese nuevamente la categoria del producto');
+                category = prompt('Ingrese nuevamente la categoria del producto').trim().toLowerCase();
             }
         } while (true);
 
-        let brand = prompt('--Ingrese la marca del producto--').trim();
+        let brand = prompt('--Ingrese la marca del producto--').trim().toLowerCase();
 
         do 
         {
@@ -58,7 +58,7 @@ function addProduct()
             } 
             else 
             {
-                brand = prompt('Ingrese nuevamente la marca del producto');
+                brand = prompt('Ingrese nuevamente la marca del producto').trim().toLowerCase();
             }
         } while (true);
 
@@ -121,6 +121,7 @@ function deleteProduct()
 
     inventario.splice(index,1);
 
+    console.log('LISTA DE PRODUCTOS ACTUALIZADA');
     //Mostrar inventario con elementos disponibles
     inventario.forEach((product, i) =>
     {
@@ -140,13 +141,50 @@ Modificar Producto
     //reusar las condiciones del primer metodo y la parte del indice
 */
 
-addProduct();
-deleteProduct();
 
 /*
 Buscar por Nombre
     Solicita ingresar el nombre del producto a buscar.
     Encuentra y muestra los productos coincidentes.
+
+
+*/
+
+function searchProduct()
+{
+    let nameSearch = prompt(`--Ingrese el nombre del producto a buscar--`).trim().toLowerCase(); 
+
+    //validacion de la busqueda
+    do 
+    {
+        //comprobacion de cadena
+        if (/^[A-Za-z]+$/.test(nameSearch)) 
+        {
+            break;
+        } 
+        else 
+        {
+            nameSearch = prompt('Ingrese nuevamente la busqueda').trim().toLowerCase();
+        }
+    } while (true);
+
+    //validacion para saber si se encuentra el producto
+    while(!(inventario.includes(nameSearch)))
+    {
+        const findProducts = inventario.find(product => product.nombre === nameSearch);
+
+        //Mostrar inventario con elementos disponibles
+        findProducts.forEach((product, i) =>
+        {
+            console.log(`${i}--${product.name}`);
+        });
+    }
+
+    console.log('PRODUCTOS ENCONTRADOS');
+    
+}
+
+/*
 
 Filtrar por Rango de Precio
     Solicita ingresar un rango inferior y superior de precios.
@@ -158,5 +196,9 @@ Crear Reporte de Inventario (Listar todos los productos)
     
 Salir
     Finaliza la gestión del inventario.
+
 */
 
+addProduct();
+deleteProduct();
+searchProduct()
