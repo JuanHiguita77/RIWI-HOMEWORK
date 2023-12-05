@@ -157,8 +157,8 @@ function modifyProduct()
     }while(isNaN(index));
 
     //Nuevos datos para modificarlos usando las misma validaciones
-    inventario[index].name = prompt(`--Modificar producto-- 
-        --Ingrese el nuevo nombre del producto--`).trim().toLowerCase();;
+    inventario[index].name = prompt(`--Modificar producto--
+        Ingrese el nuevo nombre del producto`).trim().toLowerCase();;
 
         do 
         {
@@ -173,7 +173,7 @@ function modifyProduct()
             }
         } while (true);
 
-        inventario[index].category = prompt('--Ingrese la nueva categoria del produto--').trim().toLowerCase();
+        inventario[index].category = prompt('Ingrese la nueva categoria del produto').trim().toLowerCase();
 
         do 
         {
@@ -188,7 +188,7 @@ function modifyProduct()
             }
         } while (true);
 
-        inventario[index].brand = prompt('--Ingrese la nueva marca del producto--').trim();
+        inventario[index].brand = prompt('Ingrese la nueva marca del producto').trim();
 
         do 
         {
@@ -207,14 +207,14 @@ function modifyProduct()
 
         do
         {
-            inventario[index].price = +prompt('--Ingrese el nuevo precio del producto--').trim();
+            inventario[index].price = +prompt('Ingrese el nuevo precio del producto').trim();
         }while(isNaN(inventario[index].price));
 
         inventario[index].cant = 0;
 
         do
         {
-            inventario[index].cant = +prompt('--Ingrese la nueva cantidad del producto--').trim();
+            inventario[index].cant = +prompt('Ingrese la nueva cantidad del producto').trim();
         }while(isNaN(inventario[index].cant))
 
         //Nueva lista con los datos actualizados
@@ -229,11 +229,127 @@ function modifyProduct()
 
 function searchProduct()
 {
+    let searchProduct = prompt('Ingrese el producto a buscar por nombre').trim().toLowerCase();
+
+    //validacion de cadena
+    do 
+    {
+        //comprobacion de cadena
+        if (/^[A-Za-z]+$/.test(searchProduct))
+        {
+            break;
+        } 
+        else 
+        {
+            searchProduct = prompt('Ingrese nuevamente el producto a buscar por nombre').trim().toLowerCase();
+        }
+    } while (true);
+
+    const productsFinded = inventario.filter(product => product.name === searchProduct);
+
+    console.log('PRODUCTOS ENCONTRADOS');
+
+    productsFinded.forEach((product, i) =>
+    {
+        console.log(`${i}--${product.name}`);
+    });
+
+    
+}
+
+function rangeCost()
+{
+    let lowPrice;
+    let maxPrice;
+
+    //validacion de numbers
+    do
+    {
+        lowPrice = +prompt('Ingrese el minimo de precio del producto').trim();
+        maxPrice = +prompt('Ingrese el maximo de precio del producto').trim();
+    }while(isNaN(lowPrice && maxPrice));
+
+
+    const productsFinded = inventario.filter(producto => producto.price >= lowPrice && producto.price <= maxPrice);
+
+    console.log(`PRODUCTOS ENTRE ${lowPrice}$ Y ${maxPrice}$`);
+
+    productsFinded.forEach((product, i) =>
+    {
+        console.log(`${i}--${product.name}`);
+    });
 
 }
 
-addProduct();
-//deleteProduct();
-modifyProduct();
+function inventary()
+{
+    if(inventario.length > 0)
+    {
+        inventario.forEach((product, i) =>
+        {
+            const fechaActual = new Date();
+
+            const año = fechaActual.getFullYear();
+            const mes = fechaActual.getMonth() + 1;
+            const dia = fechaActual.getDate();
+
+            const fechaFormateada = `${año}-${mes < 10 ? '0' + mes : mes}-${dia < 10 ? '0' + dia : dia}`;
+
+            console.log(`--Indice: ${i} --Nombre: ${product.name} --Categoria: ${product.category} --PRECIO:${product.price} --CANTIDAD: ${product.cant} --MARCA: ${product.brand} --FECHA DE INGRESO: ${fechaFormateada}`);
+        });
+    }
+    else
+    {
+        alert('NO HAY PRODUCTOS PARA MOSTRAR');
+    }
+
+}
+
+function menu()
+{
+    let opcion;
+    
+    do {
+        opcion = prompt(` 
+        1- Añadir un Producto.
+        2- Borrar un Producto por indice.
+        3- Modificar un Producto.
+        4- Buscar un producto por nombre.
+        5- Buscar por rango de precio.
+        6- Mostrar inventario.
+        7- SALIR              
+        Ingrese el número de la opción deseada:`);
+    
+        switch (opcion) 
+        {
+        case '1':
+            addProduct();
+            break;
+        case '2':
+            deleteProduct();
+            break;
+        case '3':
+            modifyProduct();
+            break;
+        case '4':
+            searchProduct();
+            break;
+        case '5':
+            rangeCost();
+            break;
+        case '6':
+            inventary();
+            break;
+        case '7':
+            alert('Saliendo del programa. ¡Hasta luego!');
+            break;
+        default:
+            alert('Opción no válida. Ingrese la acción nuevamente.');
+        }
+    } while (opcion !== '7');  
+}
+
+menu()
+
 
 
