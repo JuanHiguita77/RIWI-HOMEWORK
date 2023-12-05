@@ -66,15 +66,15 @@ function addProduct()
 
         do
         {
-            price = +prompt('--Ingrese el precio del producto--');
+            price = +prompt('--Ingrese el precio del producto--').trim();
         }while(isNaN(price));
 
         let cant = 0;
 
         do
         {
-            cant = +prompt('--Ingrese la cantidad del producto--');
-        }while(isNaN(cant))
+            cant = +prompt('--Ingrese la cantidad del producto--').trim();
+        }while(isNaN(cant));
 
 
         const producto = 
@@ -116,12 +116,11 @@ function deleteProduct()
     //indice a borrar
     do
     {
-        index = +prompt('Ingrese un indice a borrar en el inventario');
+        index = +prompt('Ingrese un indice a borrar en el inventario').trim();
     }while(isNaN(index));
 
     inventario.splice(index,1);
 
-    console.log('LISTA DE PRODUCTOS ACTUALIZADA');
     //Mostrar inventario con elementos disponibles
     inventario.forEach((product, i) =>
     {
@@ -137,68 +136,104 @@ Modificar Producto
     producto.
     Actualiza los detalles del producto en el inventario.
 
-
-    //reusar las condiciones del primer metodo y la parte del indice
 */
 
-
-/*
-Buscar por Nombre
-    Solicita ingresar el nombre del producto a buscar.
-    Encuentra y muestra los productos coincidentes.
-
-
-*/
-
-function searchProduct()
+function modifyProduct()
 {
-    let nameSearch = prompt(`--Ingrese el nombre del producto a buscar--`).trim().toLowerCase(); 
+    //mostrar inventario con elementos disponibles
+    console.log('LISTA DE PRODUCTOS');
 
-    //validacion de la busqueda
-    do 
+    inventario.forEach((product, i) =>
     {
-        //comprobacion de cadena
-        if (/^[A-Za-z]+$/.test(nameSearch)) 
-        {
-            break;
-        } 
-        else 
-        {
-            nameSearch = prompt('Ingrese nuevamente la busqueda').trim().toLowerCase();
-        }
-    } while (true);
+        console.log(`${i}--${product.name}`);
+    });
 
-    //validacion para saber si se encuentra el producto
-    while(!(inventario.includes(nameSearch)))
-    {
-        const findProducts = inventario.find(product => product.nombre === nameSearch);
+    let index;
 
-        //Mostrar inventario con elementos disponibles
-        findProducts.forEach((product, i) =>
+    //indice a modificar
+    do
+    {   
+        index = +prompt('ingrese un indice a buscar en el inventario');
+    }while(isNaN(index));
+
+    //Nuevos datos para modificarlos usando las misma validaciones
+    inventario[index].name = prompt(`--Modificar producto-- 
+        --Ingrese el nuevo nombre del producto--`).trim().toLowerCase();;
+
+        do 
+        {
+            //comprobacion de cadena
+            if (/^[A-Za-z]+$/.test(inventario[index].name)) 
+            {
+                break;
+            } 
+            else 
+            {
+                inventario[index].name = prompt('Ingrese nuevamente el nuevo nombre del producto').trim().toLowerCase();
+            }
+        } while (true);
+
+        inventario[index].category = prompt('--Ingrese la nueva categoria del produto--').trim().toLowerCase();
+
+        do 
+        {
+            //comprobacion de cadena
+            if (/^[A-Za-z]+$/.test(inventario[index].category)) 
+            {
+                break;
+            } 
+            else 
+            {
+                inventario[index].category = prompt('Ingrese nuevamente la nueva categoria del producto').trim().toLowerCase();
+            }
+        } while (true);
+
+        inventario[index].brand = prompt('--Ingrese la nueva marca del producto--').trim();
+
+        do 
+        {
+            //comprobacion de cadena
+            if (/^[A-Za-z]+$/.test(inventario[index].brand)) 
+            {
+                break;
+            } 
+            else 
+            {
+                inventario[index].brand = prompt('Ingrese nuevamente la nueva marca del producto').trim().toLowerCase();
+            }
+        } while (true);
+
+        inventario[index].price = 0;
+
+        do
+        {
+            inventario[index].price = +prompt('--Ingrese el nuevo precio del producto--').trim();
+        }while(isNaN(inventario[index].price));
+
+        inventario[index].cant = 0;
+
+        do
+        {
+            inventario[index].cant = +prompt('--Ingrese la nueva cantidad del producto--').trim();
+        }while(isNaN(inventario[index].cant))
+
+        //Nueva lista con los datos actualizados
+        console.log('LISTA DE PRODUCTOS');
+
+        inventario.forEach((product, i) =>
         {
             console.log(`${i}--${product.name}`);
         });
-    }
-
-    console.log('PRODUCTOS ENCONTRADOS');
-    
 }
 
-/*
 
-Filtrar por Rango de Precio
-    Solicita ingresar un rango inferior y superior de precios.
-    Muestra los productos cuyos precios están dentro del rango especificado.
+function searchProduct()
+{
 
-Crear Reporte de Inventario (Listar todos los productos)
-    Muestra un informe detallado de todos los productos en el inventario con
-    fecha actual.
-    
-Salir
-    Finaliza la gestión del inventario.
-
-*/
+}
 
 addProduct();
-deleteProduct();
-searchProduct()
+//deleteProduct();
+modifyProduct();
+
+
