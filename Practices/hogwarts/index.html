@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Hogwarts</title>
+</head>
+<body>
+
+    <form id="formInit">
+        <label for="fotoPerfil">Suba su avatar:</label>
+        <input type="file" id="fotoPerfil" name="fotoPerfil" accept="image/*">
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+    
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" required>
+    
+        <label for="familia">Familia:</label>
+        <input type="text" id="familia" name="familia" required>
+    
+        <label for="linaje">Linaje:</label>
+
+        <div id="showTiposLinajes">
+            <p>Sangre pura</p>
+            <p>Mestizo</p>
+            <p>Muggle</p>
+        </div>
+
+        <input type="text" id="linaje" name="linaje" required>
+
+
+        <label for="cualidades">Cualidades:</label>
+        <div id="cualidadesInfo"> 
+            <p>
+                Gryffindor: Valor, fuerza, audacia
+            </p>
+            <p>
+                Hufflepuff: Justicia, Lealtad, Paciencia
+            </p>
+            <p>
+                Ravenclaw: Creatividad, Erudición, Inteligencia
+            </p>
+            <p>
+                Slytherin: Ambición, Determinación, Astucia
+            </p>
+        </div>
+
+        <select id="cualidades" name="cualidades" required>
+          <option value="Valor, Fuerza, Audacia">Valor, Fuerza, Audacia</option>
+          <option value="Justicia, Lealtad, Paciencia">Justicia, Lealtad, Paciencia</option>
+          <option value="Creatividad, Erudición, Inteligencia">Creatividad, Erudición, Inteligencia</option>
+          <option value="Ambición, Determinación, Astucia">Ambición, Determinación, Astucia</option>
+        </select>
+    
+        <button type="submit" id="btnSend">Enviar</button>
+    </form>
+
+    <div id="datosEstudiante">
+        <label for="nombre">Nombre:</label>
+        <p id="inforNombre"></p>
+
+        <label for="edad">Edad:</label>
+        <p id="inforEdad"></p>
+
+        <label for="familia">Familia:</label>
+        <p id="inforFamilia"></p>
+
+        <label for="linaje">Linaje:</label>
+        <p id="inforLinaje"></p>
+
+        <label for="cualidades">Cualidades:</label>
+        <p id="inforCualidades"></p>
+
+        <label for="casa">Casa:</label>
+        <p id="inforCasa"></p>
+
+        <label for="animalPatronus">Animal Patronus:</label>
+        <p id="inforAnimalPatronus"></p>
+
+        <img id="inforFotoPerfil" src='' alt="Foto de Perfil">
+        <h2 style="text-align: center;">Estudiante</h2>
+    </div>
+</body>
+</html>
