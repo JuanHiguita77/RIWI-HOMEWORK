@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () =>
         linaje: null,
     }
 
-    document.querySelector('#datosEstudiante').style.display = 'block';
+    document.querySelector('#datosEstudiante').style.display = 'none';
 
     
     btnSend.addEventListener('click', e =>
