@@ -23,17 +23,38 @@ document.addEventListener('DOMContentLoaded', () =>
 
     const formInit = document.querySelector('#formInit');
     const btnSend = document.querySelector('#btnSend');
+    const btnCena = document.querySelector('#cena');
+    const btnOscuras = document.querySelector('#defensaArtesOscuras');
+    
     const profileImage = document.querySelector('#fotoPerfil');
-    const previewImage = document.querySelector('#inforFotoPerfil');
 
+    const previewImage = document.querySelector('#inforFotoPerfil');
+    const previewImage1 = document.querySelector('#inforFotoPerfil1');
+    const previewImage2 = document.querySelector('#inforFotoPerfil2');
+
+    //PRIMER INFO ESTUDIANTES
     const infoNombre = document.querySelector('#inforNombre');
     const infoEdad = document.querySelector('#inforEdad');
     const infoFamilia = document.querySelector('#inforFamilia');
     const infoLinaje = document.querySelector('#inforLinaje');
     const infoCualidades = document.querySelector('#inforCualidades');
 
-    const infoCasa = document.querySelector('#inforCasa');
-    const infoAnimalPatronus = document.querySelector('#inforAnimalPatronus');
+    //SEGUNDO INFO ESTUDIANTES
+    const infoNombre1 = document.querySelector('#inforNombre1');
+    const infoEdad1 = document.querySelector('#inforEdad1');
+    const infoFamilia1 = document.querySelector('#inforFamilia1');
+    const infoLinaje1 = document.querySelector('#inforLinaje1');
+    const infoCualidades1 = document.querySelector('#inforCualidades1');
+    const infoCasa1 = document.querySelector('#inforCasa1');
+
+    //TERCER INFO ESTUDIANTES
+    const infoNombre2 = document.querySelector('#inforNombre2');    
+    const infoEdad2 = document.querySelector('#inforEdad2');
+    const infoFamilia2 = document.querySelector('#inforFamilia2');
+    const infoLinaje2 = document.querySelector('#inforLinaje2');
+    const infoCualidades2 = document.querySelector('#inforCualidades2');
+    const infoCasa2 = document.querySelector('#inforCasa2');
+    const infoAnimalPatronus2 = document.querySelector('#inforAnimalPatronus2');
 
      
     const estudiante = 
@@ -49,6 +70,8 @@ document.addEventListener('DOMContentLoaded', () =>
     }
 
     document.querySelector('#datosEstudiante').style.display = 'none';
+    document.querySelector('#datosEstudiante1').style.display = 'none';
+    document.querySelector('#datosEstudiante2').style.display = 'none';
 
     
     btnSend.addEventListener('click', e =>
@@ -71,30 +94,67 @@ document.addEventListener('DOMContentLoaded', () =>
         estudiante.casa = asignarCasa();
         estudiante.animalPatronus = defensaContraLasArtesOscuras.generarAnimalPatronus();
 
+        //ASIGNAR DATOS PRIMER INFO
         infoNombre.textContent = formInit.nombre.value;
         infoEdad.textContent = formInit.edad.value;
         infoFamilia.textContent = formInit.familia.value;
         infoLinaje.textContent = formInit.linaje.value;
         infoCualidades.textContent = formInit.cualidades.value;
-        infoCasa.textContent = asignarCasa();
-        infoAnimalPatronus.textContent = defensaContraLasArtesOscuras.generarAnimalPatronus();
-        
 
+        //ASIGNAR DATOS SEGUNDO INFO
+        infoNombre1.textContent = formInit.nombre.value;
+        infoEdad1.textContent = formInit.edad.value;
+        infoFamilia1.textContent = formInit.familia.value;
+        infoLinaje1.textContent = formInit.linaje.value;
+        infoCualidades1.textContent = formInit.cualidades.value;
+        infoCasa1.textContent = asignarCasa();
 
-        //falta agregar la informacion al objeto por medio de condicionales
-        /*
-        animalPatronus: null,
-        linaje: null,*/
-
-        console.log(estudiante);
+        //ASIGNAR DATOS TERCER INFO
+        infoNombre2.textContent = formInit.nombre.value;
+        infoEdad2.textContent = formInit.edad.value;
+        infoFamilia2.textContent = formInit.familia.value;
+        infoLinaje2.textContent = formInit.linaje.value;
+        infoCualidades2.textContent = formInit.cualidades.value;
+        infoCasa2.textContent = asignarCasa();
+        infoAnimalPatronus2.textContent = defensaContraLasArtesOscuras.generarAnimalPatronus();
 
         formInit.style.display = 'none';
+        datosEstudiante1.style.display = 'none';
+        datosEstudiante2.style.display = 'none';
         datosEstudiante.style.display = 'block';
 
-        
+    });
+
+    btnCena.addEventListener('click', () =>
+    {   
+        infoCasa1.style.backgroundColor = '#9c8400';
+
+        setTimeout(() =>
+        {
+            infoCasa1.style.backgroundColor = 'transparent';
+        }, 1500);
+
+        datosEstudiante.style.display = 'none';
+        datosEstudiante1.style.display = 'block';
+    });
+
+    btnOscuras.addEventListener('click', () =>
+    {       
+        infoAnimalPatronus2.style.backgroundColor = '#9c8400';
+
+        setTimeout(() =>
+        {
+            infoAnimalPatronus2.style.backgroundColor = 'transparent';
+        }, 1500);
+
+        datosEstudiante1.style.display = 'none';
+        datosEstudiante2.style.display = 'block';
     });
 
     profileImage.addEventListener('change', imagenSubida);
+
+    previewImage1.addEventListener('change', imagenSubida);
+    previewImage2.addEventListener('change', imagenSubida);
 
     function imagenSubida() 
     {
@@ -106,8 +166,15 @@ document.addEventListener('DOMContentLoaded', () =>
             const reader = new FileReader();
 
             reader.onload = function (e) {
+                // Mostrar la imagen
                 previewImage.src = e.target.result;
-                previewImage.style.display = 'block'; // Mostrar la imagen
+                previewImage.style.display = 'block';
+
+                previewImage1.src = e.target.result;
+                previewImage1.style.display = 'block';
+
+                previewImage2.src = e.target.result;
+                previewImage2.style.display = 'block';
             };
 
             // Leer como una URL
@@ -188,71 +255,6 @@ document.addEventListener('DOMContentLoaded', () =>
     }
 
     /*
-    primer día de clases: vas temprano a clase de transformaciones, en clase de
-    transformaciones que es un objeto, con transformaciones con boggarts, 
-
-    «Altera la habilidad de un boggart para cambiar de forma y provoca risa para derrotarlo.»
-    esto se logra con el encantamiento "Riddikulus".
-
-    - Definir la clase de Transformaciones
-    En este paso, estás creando un objeto llamado claseTransformaciones que
-    representa la clase de Transformaciones. 
-
-    Estableces el nombre del profesor, el horario y una propiedad para rastrear la transformación de los boggarts.
-
-    - Paso 2: Crear una función para realizar la transformación con "Riddikulus"
-    Aquí defines una función realizarTransformacionRiddikulus dentro de
-    claseTransformaciones. 
-
-    Esta función verifica si hay un boggart presente y, si es así, realiza la transformación con el encantamiento "Riddikulus".
-
-    - Paso 3: Crear una función para enfrentar un boggart
-    Aquí defines otra función enfrentarBoggart dentro de
-    claseTransformaciones. 
-
-    Esta función toma un boggart como argumento, muestra un mensaje con la forma original del boggart, realiza la transformación y muestra el resultado.
-
-    - Paso 4: Uso y llamada a las funciones
-
-    En este paso, creas un objeto boggartEjemplo y luego llamas a la función
-    enfrentarBoggart de claseTransformaciones para enfrentar el boggart. 
-
-    */
-/*
-    const claseTransformaciones = 
-    {
-        nombreProfesor: clases.transformaciones,
-        horario: 8,
-        propiedadRastreadora: 'rastrerus',
-
-        realizarTransformacionRiddikulus: () =>
-        {
-            if(boggartEjemplo)
-            {
-                console.log('Usamos el hechizo Riddikulus');
-            }
-            else
-            {
-                console.log('No usamos ningun hechizo');
-            }
-        },
-
-        enfrentarBoggart: (boggartEjemplo) =>
-        {
-            console.log(boggartEjemplo.formaOriginal);
-        }
-    }
-
-    const boggartEjemplo = 
-    {
-        formaOriginal: 'Forma original del Boggart',
-        formaTransformada: 'Forma transformada del Boggart',
-    }
-
-    claseTransformaciones.enfrentarBoggart(boggartEjemplo);
-    claseTransformaciones.realizarTransformacionRiddikulus();
-
-    /*
 
     puedes ir agregando las demás clases, pero es importante que vayas a la clase de
     defensa contra las artes oscuras, para puedas defenderte de los dementores que
@@ -274,4 +276,5 @@ document.addEventListener('DOMContentLoaded', () =>
             return animales[animalPatronus];
         }
     }
+
 });

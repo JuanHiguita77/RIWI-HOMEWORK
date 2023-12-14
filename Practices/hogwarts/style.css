@@ -1,7 +1,14 @@
+@font-face 
+{
+    font-family: 'HARRYP__';
+    src: url('harry_p/HARRYP__.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 body 
 {
-    font-family: Arial, sans-serif;
+    font-family: HARRYP__, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
@@ -9,6 +16,8 @@ body
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background: url('https://i.pinimg.com/originals/46/76/a2/4676a2996ac266d45b82a594655d1ad5.jpg') center/cover no-repeat;
+    background-size: cover;
 }
 
 form 
@@ -17,13 +26,13 @@ form
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /*margin-top: 300px;*/
 }
 
 label 
 {
     display: block;
     margin-bottom: 8px;
+    font-size: 30px;
 }
 
 input, select 
@@ -38,7 +47,7 @@ input, select
 
 button 
 {
-    background-color: #4caf50;
+    background-color: #9a7900;
     color: #fff;
     padding: 10px 15px;
     border: none;
@@ -48,7 +57,7 @@ button
 
 button:hover 
 {
-    background-color: #45a049;
+    background-color: #474100;
 }
 
 
@@ -59,6 +68,7 @@ button:hover
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: left;
+    font-size: 18px;
 }
 
 #showTiposLinajes
@@ -87,7 +97,9 @@ button:hover
     margin-right: 8px;
 }
 
-#datosEstudiante 
+#datosEstudiante,
+#datosEstudiante1,
+#datosEstudiante2
 {
     background-color: #fff;
     padding: 20px;
@@ -103,18 +115,26 @@ button:hover
     font-weight: bold;
     display: block;
     margin-bottom: 8px;
+
 }
 
-#datosEstudiante p 
+#datosEstudiante p,
+#datosEstudiante1 p,
+#datosEstudiante2 p 
 {
+    font-family: sans-serif;
     margin: 0;
     margin-bottom: 16px;
+    font-size: 20px;
 }
 
-#datosEstudiante img 
+#datosEstudiante img, 
+#datosEstudiante1 img,
+#datosEstudiante2 img
 {
     max-width: 220px;
     height: auto;
-    border-radius: 4px;
+    border-radius: 15px;
     margin: 0 auto;
 }
+
